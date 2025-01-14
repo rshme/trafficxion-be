@@ -12,8 +12,8 @@ Welcome to the Trafficxion project! This repository is built using the latest ve
 
 Start by cloning the repository to your local machine:
 
-    git clone https://github.com/your-username/laravel-11-project.git
-    cd laravel-11-project
+    git clone https://github.com/rshme/trafficxion-be.git
+    cd trafficxion-be
 
 ### 2\. **Install Dependencies**
 
