@@ -23,6 +23,22 @@ class NewsFactory extends Factory
             'content' => $this->faker->paragraph(3),
             'published_at' => $this->faker->dateTimeThisYear(),
             'cover_url' => $this->faker->imageUrl(),
+            'images' => $this->generateImageJsonArray(),
         ];
+    }
+
+    private function generateImageJsonArray(?string $category = null, int $width = 640, int $height = 480): string
+    {
+        // Randomize the number of images between minCount and maxCount
+        $count = rand(3, 5);
+        $images = [];
+
+        // Generate the image URLs
+        for ($i = 0; $i < $count; $i++) {
+            $images[] = $this->faker->imageUrl($width, $height, $category);
+        }
+
+        // Return the JSON-encoded array of image URLs
+        return json_encode($images);
     }
 }

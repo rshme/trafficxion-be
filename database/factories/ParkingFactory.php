@@ -22,6 +22,7 @@ class ParkingFactory extends Factory
             'type' => $this->faker->randomElement(['car', 'motorcycle']),  // Enum field (car or motorcycle)
             'name' => $this->faker->company,  // Random vehicle name (e.g., "Toyota", "Yamaha")
             'cover_url' => $this->faker->imageUrl(640, 480, 'transport', true),  // Random image URL (optional: nullable)
+            'images' => $this->generateImageJsonArray(),
             'booked_count' => $this->faker->numberBetween(1, 100),  // Random booked count between 0 and 100
             'total_space' => $this->faker->numberBetween(50, 100),  // Random space between 1 and 10
             'maps_url' => $this->faker->url,  // Random maps URL (could be Google Maps, OpenStreetMap, etc.)
@@ -38,7 +39,7 @@ class ParkingFactory extends Factory
      *
      * @return array
      */
-    public function generatePublicTransport()
+    private function generatePublicTransport()
     {
         // Define possible transport names
         $transports = ['TransJakarta', 'KAI', 'MRT'];
@@ -56,5 +57,20 @@ class ParkingFactory extends Factory
         }
 
         return json_encode($publicTransportData);  // Return the array of transport data
+    }
+
+    private function generateImageJsonArray(?string $category = null, int $width = 640, int $height = 480): string
+    {
+        // Randomize the number of images between minCount and maxCount
+        $count = rand(3, 5);
+        $images = [];
+
+        // Generate the image URLs
+        for ($i = 0; $i < $count; $i++) {
+            $images[] = $this->faker->imageUrl($width, $height, $category);
+        }
+
+        // Return the JSON-encoded array of image URLs
+        return json_encode($images);
     }
 }
