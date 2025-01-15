@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ParkingController;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ Route::group(['prefix' => 'v1'], function() {
         return 'test';
     });
     
+    Route::apiResource('location', LocationController::class);
     Route::apiResource('news', NewsController::class);
     Route::apiResource('parking', ParkingController::class);
 });
