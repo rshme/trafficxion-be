@@ -31,7 +31,6 @@ class LocationSeeder extends Seeder
 
         foreach ($locations as $index => $city) {
             DB::table('locations')->insert([
-                'id' => $index + 1,
                 'slug' => Str::slug($city),
                 'name' => $city,
             ]);

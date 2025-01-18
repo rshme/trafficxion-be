@@ -6,6 +6,7 @@ use App\Http\Resources\LocationResourceAPI;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class LocationController extends Controller
 {
@@ -14,7 +15,22 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $locationName = request()->query('name');
+        $locationSlug = Str::slug($locationName);
+
+        $location = Location::whereSlug($locationSlug)->select(['id', 'slug', 'name'])->first();
+        if(!$location) {
+            $location = Location::create([
+                'name' => $locationName,
+                'slug' => $locationSlug
+            ]);
+        }
+
+        return response()->json([
+            'code_status' => Response::HTTP_OK,
+            'msg_status' => 'Location has been loaded',
+            'data' => $location
+        ]);
     }
 
     /**
