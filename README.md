@@ -86,6 +86,51 @@ Visit [http://localhost:8000](http://localhost:8000) in your browser to see the 
 
 * * *
 
+### 🧪 Setting Up for Testing
+------------------
+
+If you want to run tests in your local development environment, you'll need to configure a separate `.env.testing` file for the testing environment.
+
+#### 1\. **Create .env.testing File**
+
+First, copy the `.env` file to create a `.env.testing` file:
+
+    cp .env .env.testing
+
+#### 2\. **Configure Testing Environment**
+
+Create `.env.testing` file, update the configuration to match your testing environment. Typically, you will want to use a separate database to avoid conflicts with your local data.
+
+For example, you can configure the database for testing:
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_test_database_name
+    DB_USERNAME=your_test_database_user
+    DB_PASSWORD=your_test_database_password
+
+Make sure to replace `your_test_database_name`, `your_test_database_user`, and `your_test_database_password` with appropriate test values.
+
+#### 3\. **Run Tests**
+
+Once you've set up your `.env.testing` file, you can run the tests with the following Artisan command:
+
+    php artisan test
+
+This will run the tests using the configurations from the `.env.testing` file.
+
+#### 4\. **Optional: Running Specific Test Suite**
+
+If you want to run a specific test or test suite, you can use the `--filter` option to specify a test name:
+
+    php artisan test --filter=TestClassName
+
+This allows you to isolate tests if you're working on a specific feature or bug fix.
+
+By setting up the `.env.testing` file and running the tests, you can ensure that your changes won't affect your production or development environment. Happy testing! 🎉
+
+* * *
 ⚙️ Additional Commands
 ----------------------
 
