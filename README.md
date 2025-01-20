@@ -162,11 +162,4 @@ This command will roll back all migrations and then re-run them, including the s
 
 * * *
 
-📄 License
-----------
-
-This project is open-source and available under the [MIT License](LICENSE).
-
-* * *
-
 Enjoy developing with Trafficxion! 🎉
